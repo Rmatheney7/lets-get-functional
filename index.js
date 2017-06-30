@@ -59,7 +59,7 @@ console.log("5. The avg Balance of all the customers is " + avgBalance + ".");
 
 // 6 //
 var names = _.pluck(customers, "name");
-var letter = "T";
+var letter = "D";
 var startsWith = _.filter(names, function(e, i, c){return(e[0] === letter)});
 console.log("6. " + startsWith.length + " customers have names that start with the letter " + letter + ".");
 
@@ -67,12 +67,13 @@ console.log("6. " + startsWith.length + " customers have names that start with t
 // 7 //
 var friendGrp = _.pluck(customers, "friends");
 var friendsNames = [];
-//_.each(friendGrp,function (e,i,c){friendsNames.push(_.pluck(e, "name"));});
-//friendsNames = _.reduce(friendsNames, function(a, b){return a.concat(b)});
-//friendsNames = _.unique(friendsNames);
-//friendsNames = _.reject(friendsNames, function(e, i, c){return _.contains(names, e);});
-//var friendsStartWith = _.filter(friendsNames, function(e, i, c){return(e[0] === letter)});
-//console.log("7. " + friendsStartWith.length + " Friends of customers have names that start with the letter " + letter + ".");
+_.each(friendGrp,function (e,i,c){friendsNames.push(_.pluck(e, "name"));});
+friendsNames = _.reduce(friendsNames, function(a, b){return a.concat(b)});
+friendsNames = _.unique(friendsNames);
+friendsNames = _.reject(friendsNames, function(e, i, c){return _.contains(names, e);});
+var friendsStartWith = _.filter(friendsNames, function(e, i, c){return(e[0] === letter)});
+console.log("7. " + friendsStartWith.length + " Friends of customers have names that start with the letter " + letter + ".");
+
 
 // 8 //
 var friendsWith = _.map(customers,function(e,i,c){return [e.name, e.friends];});
@@ -110,4 +111,3 @@ _.reduce(genders, function(a,b,c){if(obj.hasOwnProperty(a)){ obj[a] += 1}else{re
 console.log("10.", obj);
 
 
-//console.log(Object.keys(commontags));
